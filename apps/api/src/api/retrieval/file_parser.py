@@ -1,9 +1,12 @@
-"""Parses uploaded files (CSV, JSON, Excel, DOCX) into text for LLM analysis."""
+"""Parses uploaded files (CSV, JSON, Excel, DOCX, SQLite) into text for LLM analysis."""
 
 import json
 import csv
 import io
 import logging
+import sqlite3
+import tempfile
+import os
 
 logger = logging.getLogger(__name__)
 
@@ -110,12 +113,56 @@ def parse_docx(content: bytes) -> str:
     return "\n".join(lines)
 
 
+def parse_sqlite(content: bytes) -> str:
+    tmp_fd, tmp_path = tempfile.mkstemp(suffix=".db")
+    try:
+        os.write(tmp_fd, content)
+        os.close(tmp_fd)
+
+        conn = sqlite3.connect(tmp_path)
+        cursor = conn.cursor()
+
+        cursor.execute("SELECT name FROM sqlite_master WHERE type='table' ORDER BY name")
+        tables = [row[0] for row in cursor.fetchall()]
+
+        if not tables:
+            conn.close()
+            return "Empty SQLite database (no tables found)."
+
+        lines = [f"SQLite database with {len(tables)} table(s): {', '.join(tables)}"]
+
+        for table in tables:
+            cursor.execute(f"PRAGMA table_info('{table}')")
+            columns = [row[1] for row in cursor.fetchall()]
+
+            cursor.execute(f"SELECT COUNT(*) FROM '{table}'")
+            row_count = cursor.fetchone()[0]
+
+            cursor.execute(f"SELECT * FROM '{table}' LIMIT 50")
+            rows = cursor.fetchall()
+
+            lines.append(f"\n## Table: {table} ({row_count} rows, {len(columns)} columns)")
+            lines.append(" | ".join(columns))
+            lines.append(" | ".join(["---"] * len(columns)))
+            for row in rows:
+                lines.append(" | ".join(str(v) if v is not None else "" for v in row))
+
+            if row_count > 50:
+                lines.append(f"\n... ({row_count - 50} more rows not shown)")
+
+        conn.close()
+        return "\n".join(lines)
+    finally:
+        os.unlink(tmp_path)
+
+
 PARSERS = {
     ".csv": parse_csv,
     ".json": parse_json,
     ".xlsx": parse_excel,
     ".xls": parse_excel,
     ".docx": parse_docx,
+    ".db": parse_sqlite,
 }
 
 SUPPORTED_EXTENSIONS = set(PARSERS.keys())

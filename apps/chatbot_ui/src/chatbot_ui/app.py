@@ -83,8 +83,8 @@ with st.sidebar:
         st.subheader("Upload a File")
         uploaded_file = st.file_uploader(
             "Choose a file to analyze",
-            type=["csv", "json", "xlsx", "xls", "docx"],
-            help="Supported formats: CSV, JSON, Excel (.xlsx), Word (.docx)",
+            type=["csv", "json", "xlsx", "xls", "docx", "db"],
+            help="Supported formats: CSV, JSON, Excel (.xlsx), Word (.docx), SQLite (.db)",
         )
     else:
         uploaded_file = None
@@ -121,7 +121,7 @@ mode_config = {
         "title": "Data Analysis",
         "subtitle": "Upload a file (CSV, JSON, Excel, Word) and ask questions about it.",
         "placeholder": "e.g., What are the key patterns in this data? Summarize the main findings.",
-        "welcome": "Upload a file using the sidebar and I'll analyze it for you. I can read **CSV**, **JSON**, **Excel (.xlsx)**, and **Word (.docx)** files. You can ask specific questions or I'll provide a comprehensive summary.",
+        "welcome": "Upload a file using the sidebar and I'll analyze it for you. I can read **CSV**, **JSON**, **Excel (.xlsx)**, **Word (.docx)**, and **SQLite (.db)** files. You can ask specific questions or I'll provide a comprehensive summary.",
     },
 }
 
