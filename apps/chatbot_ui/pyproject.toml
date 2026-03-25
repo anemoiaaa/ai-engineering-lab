@@ -21,7 +21,7 @@ build-backend = "hatchling.build"
 shared = { workspace = true }
 
 [tool.hatch.build.targets.wheel]
-packages = ["src/api"]
+packages = ["src/chatbot_ui"]
 
 [tool.hatch.build.targets.sdist]
 include = [

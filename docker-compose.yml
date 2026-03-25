@@ -19,6 +19,9 @@ services:
       - 8000:8000
     env_file:
       - .env
+    environment:
+      - POLICIES_DIR=/app/data/policies
     restart: unless-stopped
     volumes:
       - ./apps/api/src:/app/apps/api/src
+      - ./data/policies:/app/data/policies
