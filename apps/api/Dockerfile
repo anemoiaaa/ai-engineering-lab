@@ -23,6 +23,9 @@ ENV PYTHONDONTWRITEBYTECODE=1
 ENV PATH="/app/.venv/bin:$PATH"
 ENV PYTHONPATH="/app/apps/api/src:$PYTHONPATH"
 
+# Copy policy data
+COPY data/policies ./data/policies
+
 # Create non-root user and set permissions
 RUN addgroup --system app && \
     adduser --system --ingroup app app && \

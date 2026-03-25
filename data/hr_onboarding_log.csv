@@ -1,0 +1,26 @@
+employee_id,name,department,start_date,onboarding_completed,days_to_complete,mentor_assigned,satisfaction_score
+E001,Alice Chen,Engineering,2025-01-15,True,5,True,4.5
+E002,Bob Martinez,Marketing,2025-01-22,True,7,True,3.8
+E003,Carol Singh,Engineering,2025-02-01,True,4,True,4.7
+E004,David Kim,Finance,2025-02-10,True,8,False,3.2
+E005,Eva Rossi,HR,2025-02-15,True,3,True,4.9
+E006,Frank Okafor,Engineering,2025-03-01,True,6,True,4.1
+E007,Grace Liu,Marketing,2025-03-10,False,15,False,2.5
+E008,Henry Park,Finance,2025-03-20,True,5,True,4.3
+E009,Irene Tanaka,Engineering,2025-04-01,True,4,True,4.6
+E010,James Brown,Sales,2025-04-15,True,6,True,3.9
+E011,Karen White,Engineering,2025-05-01,True,5,True,4.4
+E012,Leo Fernandez,Marketing,2025-05-12,True,9,False,3.1
+E013,Mia Johnson,Finance,2025-06-01,True,7,True,3.7
+E014,Noah Davis,Sales,2025-06-15,False,20,False,2.1
+E015,Olivia Wang,HR,2025-07-01,True,3,True,5.0
+E016,Peter Müller,Engineering,2025-07-10,True,4,True,4.8
+E017,Quinn Adams,Marketing,2025-08-01,True,6,True,4.0
+E018,Rachel Lee,Finance,2025-08-15,True,8,False,3.4
+E019,Sam Patel,Engineering,2025-09-01,True,5,True,4.5
+E020,Tina Nguyen,Sales,2025-09-15,True,7,True,3.6
+E021,Uma Sharma,HR,2025-10-01,True,3,True,4.9
+E022,Victor Costa,Engineering,2025-10-15,True,4,True,4.7
+E023,Wendy Zhou,Marketing,2025-11-01,False,18,False,2.3
+E024,Xavier Jones,Finance,2025-11-10,True,6,True,4.0
+E025,Yuki Sato,Sales,2025-12-01,True,5,True,4.2
